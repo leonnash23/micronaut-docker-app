@@ -21,20 +21,39 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-
 </head>
 <body style="background: url(/images/back.jpg),repeat-x, repeat-y;">
-    <div class="container">
-        <div style="margin-top: 50%" class="row">
-            <div class="two columns"></div>
-            <div class="ten columns">
-                <h1 style="text-align: center">Welcome, <span th:text="${name}"></span>!</h1>
-                <div th:if="${time}">
-                    <h3 style="text-align: center">System timestamp: <span th:text="${time}"></span>!</h3>
+<div class="container">
+    <div style="margin-top: 50%" class="row">
+        <div class="two columns"></div>
+        <div th:if="${days}" class="ten columns">
+            <h1 style="text-align: center">Days <span th:text="${days}"></span>!</h1>
+        </div>
+        <div class="two columns"></div>
+        <form>
+            <div class="row">
+                <div class="six columns">
+                    <label for="from">From</label>
+                    <div th:if="${from}">
+                        <input class="u-full-width" type="date" id="from" name="from" th:value="${from}">
+                    </div>
+                    <div th:unless="${from}">
+                        <input class="u-full-width" type="date" id="from" name="from">
+                    </div>
+                </div>
+                <div class="six columns">
+                    <label for="to">To</label>
+                    <div th:if="${to}">
+                        <input class="u-full-width" type="date" id="to" name="to" th:value="${to}">
+                    </div>
+                    <div th:unless="${to}">
+                        <input class="u-full-width" type="date" id="to" name="to">
+                    </div>
                 </div>
             </div>
-            <div class="two columns"></div>
-        </div>
+            <input class="button-primary" type="submit" value="Submit">
+        </form>
     </div>
+</div>
 </body>
 </html>
