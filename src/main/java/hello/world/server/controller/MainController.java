@@ -1,20 +1,19 @@
 package hello.world.server.controller;
 
-import hello.world.server.service.HelloService;
+import hello.world.server.service.HomeService;
 import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.views.ModelAndView;
 import io.micronaut.views.View;
 
 @Controller("/")
 public class MainController {
 
-    private HelloService helloService;
+    private HomeService homeService;
 
-    public MainController(HelloService helloService) {
-        this.helloService = helloService;
+    public MainController(HomeService homeService) {
+        this.homeService = homeService;
     }
 
     @View("home")
@@ -26,6 +25,6 @@ public class MainController {
     @View("home")
     @Get()
     public HttpResponse hello(){
-        return HttpResponse.ok(CollectionUtils.mapOf("name", "World"));
+        return HttpResponse.ok(CollectionUtils.mapOf("name", "World", "time", homeService.getSystemTime()));
     }
 }
