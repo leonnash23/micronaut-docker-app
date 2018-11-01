@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- Mobile Specific Metas
+ –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+
+    <!-- Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        var socket = new WebSocket("ws://localhost:8080/ws/test");
+        socket.onopen = function () {
+            console.log("Connected to server");
+            socket.send("Hello!");
+        };
+        socket.onmessage = function (mes) {
+            console.log(mes.data);
+            var d = document.getElementById("mes");
+            d.innerHTML += "<p>" + mes.data + "</p>";
+        };
+    </script>
+
+
+</head>
+<body style="background: url(/images/back.jpg),repeat-x, repeat-y;">
+<div class="container">
+    <div style="margin-top: 50%" class="row">
+        <div class="two columns"></div>
+        <div class="ten columns">
+            <div id="mes">
+            </div>
+        </div>
+        <div class="two columns"></div>
+    </div>
+</div>
+</body>
+</html>
